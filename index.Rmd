@@ -19,23 +19,21 @@ output: html_document
 
 # **Jaji Pamarthi**
 
-This is a template example for lab journaling. Students in Matt Crump's Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.
+The website is still in progress. 
 
-## How to use
+## Introduction
 
-1. fork the repo for this website and follow instructions on read me to get set up. [https://github.com/CrumpLab/LabJournalWebsite](https://github.com/CrumpLab/LabJournalWebsite)
+Hi! I'm Jaji Pamarthi. Currently doing my PhD. in Human Factors. 
 
-2. Blog/journal what you are doing in R, by editing the Journal.Rmd. See the [Journal page](https://crumplab.github.io/LabJournalWebsite/Journal.html) for an example of what to do to get started learning R.
+Human Data + Technology = Better World
 
-3. See the [links page](https://crumplab.github.io/LabJournalWebsite/Links.html) for lots of helpful links on learning R.
 
-4. Change everything to make it your own.
 
 
 </div>
 <div class="col-sm-6">
 
-### [Crump Lab: Human Cognition and Performance](https://jajipamarthi.github.io)
+### [Human Performance Lab](http://www.ecs.umass.edu/hpl/)
 
 <a href = "https://jajipamarthi.github.io">
 ![](images/Jaji_Headshot.jpeg)
