@@ -1,5 +1,5 @@
 ---
-title: "MyLabJournal"
+title: "Jaji Pamarthi"
 output: html_document
 ---
 
@@ -35,9 +35,9 @@ This is a template example for lab journaling. Students in Matt Crump's Human Co
 </div>
 <div class="col-sm-6">
 
-### [Crump Lab: Human Cognition and Performance](https://crumplab.github.io)
+### [Crump Lab: Human Cognition and Performance](https://jajipamarthi.github.io)
 
-<a href = "https://crumplab.github.io">
-![](images/logo.png)
+<a href = "https://jajipamarthi.github.io">
+![](images/Jaji_Headshot.jpeg)
 </a>
 </div>
