@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo=TRUE,message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
 
-# Reading Data from 
+#Reading Data 
 
 ##Packages used
 
@@ -32,7 +32,7 @@ library(dplyr)
 
 Reading csv file
 ```{r}
-Austrailian_marriage_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/docs/Journal_files/Data/australian_marriage_tidy - australian_marriage_tidy.csv")
+Austrailian_marriage_data<-read_csv(file="C:/Users/jyoth/Documents/Data/australian_marriage_tidy - australian_marriage_tidy.csv")
 
 Austrailian_marriage_data
 print(head(Austrailian_marriage_data))
@@ -40,19 +40,20 @@ print(head(Austrailian_marriage_data))
 ```
 ## Data Type
 
-There are three variable in this dataset: 
+There are four variables in this dataset: 
 
-1. territory: It is contains names of the terriorty in Austraila. Data type is character 
+1. territory: It is contains names of the territory in Australia. Data type is character 
 
 2. resp : Represents response of the individual, binary (yes or no). Data type is charater
 
 3. count: Population in the territory. Data type: Double precision integer.
 
-4. percent : Percentage of poplation that expressed views. Data type: Double class float.
+4. percent : Percentage of population that expressed views. Data type: Double class float.
 
 ## Data Wrangling 
 
 ###Assigning new column names
+
 ```{r}
 colnames(Austrailian_marriage_data) <- c("Territory_Name",
                        "Response_SameSexMarriage",
