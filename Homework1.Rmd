@@ -1,0 +1,72 @@
+---
+title: "Homework1"
+author: "Jaji Pamarthi"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+
+# Reading Data from 
+
+##Packages used
+
+```{r}
+library(readr)
+library(magrittr)
+library(dplyr)
+```
+
+## Read Austrailian Marriage Data 
+
+Reading csv file
+```{r}
+Austrailian_marriage_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/docs/Journal_files/Data/australian_marriage_tidy - australian_marriage_tidy.csv")
+
+Austrailian_marriage_data
+print(head(Austrailian_marriage_data))
+
+```
+## Data Type
+
+There are three variable in this dataset: 
+
+1. territory: It is contains names of the terriorty in Austraila. Data type is character 
+
+2. resp : Represents response of the individual, binary (yes or no). Data type is charater
+
+3. count: Population in the territory. Data type: Double precision integer.
+
+4. percent : Percentage of poplation that expressed views. Data type: Double class float.
+
+## Data Wrangling 
+
+###Assigning new column names
+```{r}
+colnames(Austrailian_marriage_data) <- c("Territory_Name",
+                       "Response_SameSexMarriage",
+                       "Population",
+                       "Percentage_Yes"
+                       )
+
+print(head(Austrailian_marriage_data))
+```
+### Using filter and arrange operations
+```{r}
+
+data(Austrailian_marriage_data)
+Austrailian_marriage_data %>%
+ filter(Percentage_Yes > 50) %>%
+ arrange(desc(Percentage_Yes))
+```

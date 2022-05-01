@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Jaji Pamarthi" />
 
+<meta name="date" content="2022-04-30" />
 
-<title>R Journal</title>
+<title>Homework1</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -342,27 +344,107 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">R Journal</h1>
+<h1 class="title toc-ignore">Homework1</h1>
+<h4 class="author">Jaji Pamarthi</h4>
+<h4 class="date">2022-04-30</h4>
 
 </div>
 
 
-<div id="my-first-post" class="section level1">
-<h1>My first post</h1>
-<p>2022 | 4 | 30 Last compiled: 2022-04-30</p>
-<p>This is R Journal for updating my learnings from DACSS 601
-coursework. I will update this page as I go to add links to each
-learning/HomeWork.</p>
+<div id="reading-data-from" class="section level1">
+<h1>Reading Data from</h1>
+<p>##Packages used</p>
+<pre class="r"><code>library(readr)
+library(magrittr)
+library(dplyr)</code></pre>
+<div id="read-austrailian-marriage-data" class="section level2">
+<h2>Read Austrailian Marriage Data</h2>
+<p>Reading csv file</p>
+<pre class="r"><code>Austrailian_marriage_data&lt;-read_csv(file=&quot;C:/Users/jyoth/Documents/GitHub/Jajipamarthi/docs/Journal_files/Data/australian_marriage_tidy - australian_marriage_tidy.csv&quot;)
+
+Austrailian_marriage_data</code></pre>
+<pre><code>## # A tibble: 16 x 4
+##    territory                       resp    count percent
+##    &lt;chr&gt;                           &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 New South Wales                 yes   2374362    57.8
+##  2 New South Wales                 no    1736838    42.2
+##  3 Victoria                        yes   2145629    64.9
+##  4 Victoria                        no    1161098    35.1
+##  5 Queensland                      yes   1487060    60.7
+##  6 Queensland                      no     961015    39.3
+##  7 South Australia                 yes    592528    62.5
+##  8 South Australia                 no     356247    37.5
+##  9 Western Australia               yes    801575    63.7
+## 10 Western Australia               no     455924    36.3
+## 11 Tasmania                        yes    191948    63.6
+## 12 Tasmania                        no     109655    36.4
+## 13 Northern Territory(b)           yes     48686    60.6
+## 14 Northern Territory(b)           no      31690    39.4
+## 15 Australian Capital Territory(c) yes    175459    74  
+## 16 Australian Capital Territory(c) no      61520    26</code></pre>
+<pre class="r"><code>print(head(Austrailian_marriage_data))</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   territory       resp    count percent
+##   &lt;chr&gt;           &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 New South Wales yes   2374362    57.8
+## 2 New South Wales no    1736838    42.2
+## 3 Victoria        yes   2145629    64.9
+## 4 Victoria        no    1161098    35.1
+## 5 Queensland      yes   1487060    60.7
+## 6 Queensland      no     961015    39.3</code></pre>
 </div>
-<div id="updated-date-note-the-order" class="section level1">
-<h1>Updated Date (note the order)</h1>
-<p>2022 | 4 | 30 Last compiled: 2022-04-30</p>
+<div id="data-type" class="section level2">
+<h2>Data Type</h2>
+<p>There are three variable in this dataset:</p>
+<ol style="list-style-type: decimal">
+<li><p>territory: It is contains names of the terriorty in Austraila.
+Data type is character</p></li>
+<li><p>resp : Represents response of the individual, binary (yes or no).
+Data type is charater</p></li>
+<li><p>count: Population in the territory. Data type: Double precision
+integer.</p></li>
+<li><p>percent : Percentage of poplation that expressed views. Data
+type: Double class float.</p></li>
+</ol>
 </div>
-<div id="homeworks-links" class="section level1">
-<h1>Homeworks Links</h1>
-<p>Homework 1:<a
-href="https://https://jajipamarthi.github.io/Homework1.html">Reading
-Data</a></p>
+<div id="data-wrangling" class="section level2">
+<h2>Data Wrangling</h2>
+<p>###Assigning new column names</p>
+<pre class="r"><code>colnames(Austrailian_marriage_data) &lt;- c(&quot;Territory_Name&quot;,
+                       &quot;Response_SameSexMarriage&quot;,
+                       &quot;Population&quot;,
+                       &quot;Percentage_Yes&quot;
+                       )
+
+print(head(Austrailian_marriage_data))</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   Territory_Name  Response_SameSexMarriage Population Percentage_Yes
+##   &lt;chr&gt;           &lt;chr&gt;                         &lt;dbl&gt;          &lt;dbl&gt;
+## 1 New South Wales yes                         2374362           57.8
+## 2 New South Wales no                          1736838           42.2
+## 3 Victoria        yes                         2145629           64.9
+## 4 Victoria        no                          1161098           35.1
+## 5 Queensland      yes                         1487060           60.7
+## 6 Queensland      no                           961015           39.3</code></pre>
+<div id="using-filter-and-arrange-operations" class="section level3">
+<h3>Using filter and arrange operations</h3>
+<pre class="r"><code>data(Austrailian_marriage_data)
+Austrailian_marriage_data %&gt;%
+ filter(Percentage_Yes &gt; 50) %&gt;%
+ arrange(desc(Percentage_Yes))</code></pre>
+<pre><code>## # A tibble: 8 x 4
+##   Territory_Name                  Response_SameSexMar~ Population Percentage_Yes
+##   &lt;chr&gt;                           &lt;chr&gt;                     &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Australian Capital Territory(c) yes                      175459           74  
+## 2 Victoria                        yes                     2145629           64.9
+## 3 Western Australia               yes                      801575           63.7
+## 4 Tasmania                        yes                      191948           63.6
+## 5 South Australia                 yes                      592528           62.5
+## 6 Queensland                      yes                     1487060           60.7
+## 7 Northern Territory(b)           yes                       48686           60.6
+## 8 New South Wales                 yes                     2374362           57.8</code></pre>
+</div>
+</div>
 </div>
 
 
