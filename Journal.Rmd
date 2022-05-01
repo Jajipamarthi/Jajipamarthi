@@ -31,7 +31,7 @@ This is R Journal for updating my learnings from DACSS 601 coursework. I will up
 
 # Homeworks Links
 
-Homework 1:[Reading Data](https://https://jajipamarthi.github.io/Homework1.html)
+Homework 1:[Reading Data](https://https//jajipamarthi.github.io/Homework1.html)
 
 
 
