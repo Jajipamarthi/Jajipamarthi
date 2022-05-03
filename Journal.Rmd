@@ -1,5 +1,6 @@
 ---
 title: "R Journal"
+author: "Jaji Pamarthi"
 output:
   html_document:
     toc: true
@@ -31,7 +32,9 @@ This is R Journal for updating my learnings from DACSS 601 coursework. I will up
 
 # Homeworks Links
 
-Homework 1:[Reading Data](https://jajipamarthi.github.io/Homework1.html)
+1. [Practice to Read Data](https://jajipamarthi.github.io/Homework2.html)
+
+2. [Selecting dataset and Research Questions for data analysis](https://jajipamarthi.github.io/Homework3.html)
 
 
 
