@@ -1,0 +1,70 @@
+---
+title: "Homework4"
+author: "Jaji Pamarthi"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+This data set is about the bicycle accidents in Britain from year 1979 to 2018.
+
+This Dataset contains data such as the accident index, number of vehicles involved, number of casualties, date and time of accident, speed limit, road and weather conditions, day of accident and finally the road type in which the accident took place in Accidents.csv file. It also includes the gender of person driving the bicycle, severity of the accident and the age group range of the victims in bikers.csv file.
+
+This seemed like interesting dataset as I'm currently working on Bicycle Simulator project. Understanding of real-time data like this dataset would help in better design and developing experiments to understand bicyclist behavior as well.
+
+The dataset used is from kaggle and the link to data is [Bike Accidents in Great Britain](https://www.kaggle.com/datasets/johnharshith/bicycle-accidents-in-great-britain-1979-to-2018?select=Accidents.csv)
+
+
+## Packages used
+
+```{r}
+library(readr)
+library(magrittr)
+library(dplyr)
+library(tidyr)
+
+```
+
+## Read Bikers information and Accident Data  
+
+Reading csv file
+```{r}
+Accident_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Accidents.csv")
+Bikers_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Bikers.csv")
+
+head(Accident_data)
+```
+
+## Combining two datasets
+
+Combing the two csv files based on the Accident_Index values in Accident_data
+```{r}
+joined_data <- merge(Accident_data, Bikers_data, by.x = "Accident_Index", 
+             by.y = "Accident_Index", all.x = TRUE, all.y = FALSE) # merging two csv files
+joined_data
+
+
+```
+## Descriptive Statistics
+```{r}
+```
+## Potential Research Questions
+
+1. Does the weather conditions have an impact on the severity of the accident?
+2. Is the accident rate higher for specific gender? 
+3. Is the accident rate higher for specific age group?
+4. Over time did the accidents decrease?
+5. Is there any correlation between Severity
+and factors such as speed, road conditions, weather conditions, road type and light conditions?
