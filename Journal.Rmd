@@ -1,14 +1,9 @@
 ---
 title: "R Journal"
 author: "Jaji Pamarthi"
-output:
-  html_document:
-    toc: true
-    toc_float: true
-    collapsed: false
-    number_sections: false
-    toc_depth: 1
-    #code_folding: hide
+description: Homepage_Homework1
+output: distill::distill_article
+  
 ---
 
 ```{r setup, include=FALSE}

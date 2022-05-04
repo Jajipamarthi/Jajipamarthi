@@ -2,8 +2,9 @@
 title: "Homework3"
 author: "Jaji Pamarthi"
 date: "`r Sys.Date()`"
+description: "Homework3"
 output:
-  html_document:
+  distill::distill_article:
     toc: true
     toc_float: true
     collapsed: false
