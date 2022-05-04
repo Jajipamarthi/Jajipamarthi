@@ -30,7 +30,7 @@ This seemed like interesting dataset as I'm currently working on Bicycle Simulat
 The dataset used is from kaggle and the link to data is [Bike Accidents in Great Britain](https://www.kaggle.com/datasets/johnharshith/bicycle-accidents-in-great-britain-1979-to-2018?select=Accidents.csv)
 
 
-## Packages used
+## Libraries
 
 ```{r}
 library(readr)

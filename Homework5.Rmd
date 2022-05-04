@@ -1,0 +1,144 @@
+
+---
+title: "Better Visualizations"
+author: "Jaji Pamarthi"
+date: "`r Sys.Date()`"
+description: "Homework5"
+output: distill::distill_article
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+Bicyclist Accidents Data Analysis
+
+## Required Libraries
+
+```{r}
+library(readr)
+library(magrittr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(wesanderson)
+library(corrplot)
+```
+
+## Read Bikers information and Accident Data  
+
+### Reading csv file and combining the two files
+
+```{r}
+Accident_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Accidents.csv")
+Bikers_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Bikers.csv")
+
+
+joined_data <- merge(Accident_data, Bikers_data, by.x = "Accident_Index", 
+             by.y = "Accident_Index", all.x = TRUE, all.y = FALSE) # merging two csv files
+glimpse(joined_data)
+```
+
+### Tidy Data Generation
+
+```{r}
+joined_data<-joined_data%>%
+ mutate(Year_data= format(Date, format="%Y"))
+
+
+tidy_data<-select(joined_data, -Accident_Index, -Time, -Date, -Day,-Age_Grp)
+tidy_data<-select(tidy_data,10,1:9)
+
+glimpse(tidy_data)
+
+```
+
+
+
+## Visualizations
+
+
+### Research Question 1: Over time did the accidents decrease?
+
+
+```{r}
+group=factor(rep(1:5, each=40/5))
+Accident_year<-ggplot(joined_data, aes(x=Year_data)) + 
+  geom_bar(fill=group) + xlab("Years")+ylab("Number of Accidents")+
+  labs(title = "Fig 1: Over time did the accidents decrease?")
+labels <- seq(1979,2018, length.out=10)
+Accident_year+ scale_x_discrete(breaks=labels, labels<-as.character(labels))
+plot(Accident_year)
+
+
+ggplot(joined_data, aes(x=Year_data)) +geom_bar()+
+      theme_bw() +
+  labs(title = "Fig 2:Difference in Accidents per year for each Gender ", y = "Number of Accidents", x = "Year")+
+  facet_wrap(vars(Gender), scales = "free")
+
+ggplot(joined_data, aes(x=Year_data,fill = Gender)) +geom_bar()+
+      theme_bw() +
+  labs(title = "Fig 3: Difference in Accidents per year for each Gender ", y = "Number of Accidents", x = "Year")+
+  facet_grid(vars(Weather_conditions), scales = "free")
+
+```
+Figure 1 shows the number of accidents over the years, the accidents were higher in 1983 and least in 2006. The accidents decrease of the period of time. Futher, Figure 2 shows the accidents for gender over 1979-2018 were the Males have higher accident counts. Suprisingly, most of the accidents took place in clear weather conditions according to Figure 3.
+
+
+### Did higher speed limit zones have higher accidents?
+
+```{r}
+
+ ggplot(joined_data, aes(Speed_limit)) + 
+  geom_bar()  + xlab("Speed Limit (km/hr)")+ylab("Number of Accidents")+
+  labs(title = "Fig 4:Did Higher speed limits lead to more accidents?")+xlim(15,65)+ylim(0,8)
+
+ ggplot(joined_data, aes(Speed_limit,fill=Gender)) + 
+  geom_bar() +xlim(15,65)+ylim(0,8)+theme_bw() +
+  labs(title = "Fig 5: Did Higher speed limits lead to more accidents?", y = "Number of Accidents", x = "Year")+scale_fill_manual(values=wes_palette(n=3, name="Moonrise2"))
+
+  
+```
+Figure 4 shows the distribution of accidents over speed limit, the accidents were when speed is higher. Figure 5 shows the same Figure 4 with gender information, males have been in accidents more than others at lower speed limit.
+
+
+## 
+```{r}
+ggplot(joined_data, aes(Severity,Speed_limit,fill=Severity)) + geom_boxplot()+theme_bw()+labs(title = "Fig 6: Did Higher speed limits lead to severity in accidents?",x="Severity of the Accidents", y="Speed limit km/hr")+
+ylim(10,70)+scale_fill_manual(values=wes_palette(n=3, name="Moonrise2"))
+
+```
+
+This plot has Severity on x-axis and speed limit on the road on y-axis. This plot shows that Fatal accidents happened at speed zones ranging from 20 km/hr to 60 km/hr with mean of 30 km per hr, wheres as serious and slightly injured accidents happened at different speed limits. 
+
+
+
+##  Research Question 3:Is there any correlation between speed, Number of Vehicles and Number of Casaulties ?
+```{r}
+mycor<-cor(select(tidy_data,Number_of_Vehicles,Number_of_Casualties,Speed_limit))
+corrplot(mycor,method="number")
+
+
+```
+The correlation plot shows that there is some correlation between Number of Casualties and Number of Vehicles; no correlation between speed limit with Number of Vehicles and Number of Casualties.
+
+
+## Reflections
+
+The conclusions so far from the plots to the research are explained below each plot(Figure). 
+
+I have all the information required for answering the research questions. 
+
+For naive reader to understand the project better, the flow to the documents and information of the research questions is required. Along with the easily understandable plots. 
+
+The plots generated have most of the information, I need to answer my research questions. But, some plots such as Figure 1, Figure 2 and Figure 3 need to be updated for better visualization.
+
+Figure 2 and Figure 3 are not clear as the labels not readable and I would to work on updating the code for better visualization for next submission.
+
+
+
+
+
+
+

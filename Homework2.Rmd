@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo=TRUE,message=FALSE,warning=FALSE, cache=TRUE)
 
 # Reading Data 
 
-## Packages used
+## Libraries
 
 ```{r}
 library(readr)
