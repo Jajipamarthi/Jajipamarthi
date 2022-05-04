@@ -2136,30 +2136,25 @@ and combining the two files</h3>
 
 <span class='va'>joined_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>Accident_data</span>, <span class='va'>Bikers_data</span>, by.x <span class='op'>=</span> <span class='st'>"Accident_Index"</span>, 
              by.y <span class='op'>=</span> <span class='st'>"Accident_Index"</span>, all.x <span class='op'>=</span> <span class='cn'>TRUE</span>, all.y <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'># merging two csv files</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>joined_data</span><span class='op'>)</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>joined_data</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>  Accident_Index Number_of_Vehicles Number_of_Casualties       Date
-1  197901A1SEE71                  2                    1 1979-01-01
-2  197901A2JDW40                  1                    1 1979-02-01
-3  197901A4IJV90                  2                    1 1979-04-01
-4  197901A4NIE33                  2                    1 1979-04-01
-5  197901A4SKO47                  2                    1 1979-04-01
-6  197901A5CKE54                  2                    1 1979-05-01
-      Time Speed_limit Road_conditions Weather_conditions      Day
-1 18:20:00          50            Snow            Unknown   Monday
-2 09:15:00          30            Snow            Unknown  Tuesday
-3 08:45:00          30            Snow            Unknown Thursday
-4 13:40:00          30             Wet            Unknown Thursday
-5 18:50:00          30             Wet            Unknown Thursday
-6 02:50:00          40            Snow            Unknown   Friday
-         Road_type    Light_conditions Gender Severity  Age_Grp
-1 Dual carriageway Darkness lights lit   Male  Serious 36 to 45
-2          Unknown            Daylight   Male   Slight 46 to 55
-3          Unknown            Daylight   Male   Slight 46 to 55
-4          Unknown            Daylight   Male   Slight 36 to 45
-5          Unknown Darkness lights lit   Male   Slight 46 to 55
-6 Dual carriageway Darkness lights lit Female   Slight 36 to 45</code></pre>
+<pre><code>Rows: 827,861
+Columns: 14
+$ Accident_Index       &lt;chr&gt; &quot;197901A1SEE71&quot;, &quot;197901A2JDW40&quot;, &quot;1979~
+$ Number_of_Vehicles   &lt;dbl&gt; 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, ~
+$ Number_of_Casualties &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
+$ Date                 &lt;date&gt; 1979-01-01, 1979-02-01, 1979-04-01, 19~
+$ Time                 &lt;time&gt; 18:20:00, 09:15:00, 08:45:00, 13:40:00~
+$ Speed_limit          &lt;dbl&gt; 50, 30, 30, 30, 30, 40, 30, 70, 30, 30,~
+$ Road_conditions      &lt;chr&gt; &quot;Snow&quot;, &quot;Snow&quot;, &quot;Snow&quot;, &quot;Wet&quot;, &quot;Wet&quot;, &quot;~
+$ Weather_conditions   &lt;chr&gt; &quot;Unknown&quot;, &quot;Unknown&quot;, &quot;Unknown&quot;, &quot;Unkno~
+$ Day                  &lt;chr&gt; &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Thursday&quot;, &quot;Thurs~
+$ Road_type            &lt;chr&gt; &quot;Dual carriageway&quot;, &quot;Unknown&quot;, &quot;Unknown~
+$ Light_conditions     &lt;chr&gt; &quot;Darkness lights lit&quot;, &quot;Daylight&quot;, &quot;Day~
+$ Gender               &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;,~
+$ Severity             &lt;chr&gt; &quot;Serious&quot;, &quot;Slight&quot;, &quot;Slight&quot;, &quot;Slight&quot;~
+$ Age_Grp              &lt;chr&gt; &quot;36 to 45&quot;, &quot;46 to 55&quot;, &quot;46 to 55&quot;, &quot;36~</code></pre>
 </div>
 <h3 id="tidy-data-generation">Tidy Data Generation</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2173,14 +2168,21 @@ and combining the two files</h3>
 <span class='va'>tidy_data</span><span class='op'>&lt;-</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>joined_data</span>, <span class='op'>-</span><span class='va'>Accident_Index</span>, <span class='op'>-</span><span class='va'>Time</span>, <span class='op'>-</span><span class='va'>Date</span>, <span class='op'>-</span><span class='va'>Day</span>,<span class='op'>-</span><span class='va'>Age_Grp</span><span class='op'>)</span>
 <span class='va'>tidy_data</span><span class='op'>&lt;-</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>tidy_data</span>,<span class='fl'>10</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>9</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>tidy_data</span><span class='op'>)</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>tidy_data</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] &quot;Year_data&quot;            &quot;Number_of_Vehicles&quot;  
- [3] &quot;Number_of_Casualties&quot; &quot;Speed_limit&quot;         
- [5] &quot;Road_conditions&quot;      &quot;Weather_conditions&quot;  
- [7] &quot;Road_type&quot;            &quot;Light_conditions&quot;    
- [9] &quot;Gender&quot;               &quot;Severity&quot;            </code></pre>
+<pre><code>Rows: 827,861
+Columns: 10
+$ Year_data            &lt;chr&gt; &quot;1979&quot;, &quot;1979&quot;, &quot;1979&quot;, &quot;1979&quot;, &quot;1979&quot;,~
+$ Number_of_Vehicles   &lt;dbl&gt; 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, ~
+$ Number_of_Casualties &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
+$ Speed_limit          &lt;dbl&gt; 50, 30, 30, 30, 30, 40, 30, 70, 30, 30,~
+$ Road_conditions      &lt;chr&gt; &quot;Snow&quot;, &quot;Snow&quot;, &quot;Snow&quot;, &quot;Wet&quot;, &quot;Wet&quot;, &quot;~
+$ Weather_conditions   &lt;chr&gt; &quot;Unknown&quot;, &quot;Unknown&quot;, &quot;Unknown&quot;, &quot;Unkno~
+$ Road_type            &lt;chr&gt; &quot;Dual carriageway&quot;, &quot;Unknown&quot;, &quot;Unknown~
+$ Light_conditions     &lt;chr&gt; &quot;Darkness lights lit&quot;, &quot;Daylight&quot;, &quot;Day~
+$ Gender               &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;,~
+$ Severity             &lt;chr&gt; &quot;Serious&quot;, &quot;Slight&quot;, &quot;Slight&quot;, &quot;Slight&quot;~</code></pre>
 </div>
 <h2 id="descriptive-statistics">Descriptive Statistics</h2>
 <h3

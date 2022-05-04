@@ -42,7 +42,7 @@ Bikers_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Bi
 
 joined_data <- merge(Accident_data, Bikers_data, by.x = "Accident_Index", 
              by.y = "Accident_Index", all.x = TRUE, all.y = FALSE) # merging two csv files
-head(joined_data)
+glimpse(joined_data)
 ```
 ### Tidy Data Generation
 ```{r}
@@ -55,7 +55,7 @@ joined_data<-joined_data%>%
 tidy_data<-select(joined_data, -Accident_Index, -Time, -Date, -Day,-Age_Grp)
 tidy_data<-select(tidy_data,10,1:9)
 
-colnames(tidy_data)
+glimpse(tidy_data)
 
 ```
 
