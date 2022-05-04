@@ -1,7 +1,7 @@
 ---
 title: "R Journal"
 author: "Jaji Pamarthi"
-description: Homepage_Homework1
+description: "Homepage_Homework1"
 output: distill::distill_article
   
 ---
