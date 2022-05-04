@@ -66,6 +66,7 @@ print(head(Austrailian_marriage_data))
 ### Using filter and arrange operations
 
 Finding the Territories where more than 50% of the eligble population said Yes to Same Sex Marriage
+
 ```{r}
 Austrailian_marriage_data <-Austrailian_marriage_data %>%
  select(Territory_Name,Percentage_Yes) %>%

@@ -43,6 +43,7 @@ library(tidyr)
 ## Read Bikers information and Accident Data  
 
 Reading csv file
+
 ```{r}
 Accident_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Accidents.csv")
 Bikers_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Bikers.csv")
@@ -53,11 +54,12 @@ head(Accident_data)
 ## Combining two datasets
 
 Combing the two csv files based on the Accident_Index values in Accident_data
+
 ```{r}
 joined_data <- merge(Accident_data, Bikers_data, by.x = "Accident_Index", 
              by.y = "Accident_Index", all.x = TRUE, all.y = FALSE) # merging two csv files
  
-joined_data
+head(joined_data)
 
 
 ```
@@ -72,7 +74,7 @@ joined_data<-joined_data%>%
 tidy_data<-select(joined_data, -Accident_Index, -Time, -Date, -Day,-Age_Grp)
 tidy_data<-select(tidy_data,10,1:9)
 
-tidy_data
+colnames(tidy_data)
 ```
 
 ## Potential Research Questions

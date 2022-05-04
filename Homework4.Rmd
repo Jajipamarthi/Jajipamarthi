@@ -10,7 +10,7 @@ output:
     collapsed: false
     number_sections: false
     toc_depth: 2
-    code_folding: true
+    #code_folding: true
 
 ---
 
@@ -34,13 +34,15 @@ library(ggplot2)
 ## Read Bikers information and Accident Data  
 
 ### Reading csv file and combining the two files
+
 ```{r}
 Accident_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Accidents.csv")
 Bikers_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Bikers.csv")
 
-head(Accident_data)
+
 joined_data <- merge(Accident_data, Bikers_data, by.x = "Accident_Index", 
              by.y = "Accident_Index", all.x = TRUE, all.y = FALSE) # merging two csv files
+head(joined_data)
 ```
 ### Tidy Data Generation
 ```{r}
@@ -53,7 +55,7 @@ joined_data<-joined_data%>%
 tidy_data<-select(joined_data, -Accident_Index, -Time, -Date, -Day,-Age_Grp)
 tidy_data<-select(tidy_data,10,1:9)
 
-tidy_data
+colnames(tidy_data)
 
 ```
 
@@ -67,8 +69,10 @@ summarize(joined_data,mean.Vehicles=mean(Number_of_Vehicles),median.Vehicles=med
 summarize(joined_data,mean.Casualties=mean(Number_of_Casualties),median.Casualties=median(Number_of_Casualties),sd.Casualties=sd(Number_of_Casualties))
 ```
 
+Selecting only few columns to understand the changes in mean, median and standard deviation by group by Gender compared to mean,median and standard deviation calculated using all data.
+
 ```{r}
-#Selecting only few columns to understand the changes in mean, median and standard deviation by group by Gender compared to mean,median and standard deviation calculated using all data.
+
 joined_data %>%
  select(Weather_conditions,Number_of_Vehicles,Number_of_Casualties) %>%
  group_by(Weather_conditions)%>%
@@ -81,6 +85,7 @@ joined_data %>%
 ### Frequency based analysis for Categorical variables 
 
 Table 1: Frequency of Gender
+
 ```{r}
 joined_data %>%
   select(Gender) %>%
@@ -97,8 +102,8 @@ joined_data %>%
 
 
 ### Over time did the accidents decrease?
-The plot below shows the count of accidents per each year. The accidents were high in late 1900's and decrease in 2000's.
-Limitation: The data is not clear on x-axis. The plot has to be scaled along with better visualization parameters such aas color and labels can improve the understanding of the plot.
+
+
 ```{r}
  ggplot(joined_data, aes(Year_data)) + 
   geom_bar() + 
@@ -110,6 +115,7 @@ Limitation: The data is not clear on x-axis. The plot has to be scaled along wit
 ### Did higher speed limit zones have higher accidents?
 The plot below shows count of accidents for each speed limit. The accidents were highest at nominal speed limit that 30 km/hr. 
 Limitations: The visualization is not clear about the units of the speed limit and y-axis needs to be scaled to make visualization readable. 
+
 ```{r}
 
  ggplot(joined_data, aes(Speed_limit)) + 
@@ -123,6 +129,7 @@ Limitations: The visualization is not clear about the units of the speed limit a
 ```{r}
 ggplot(joined_data, aes(Severity,Speed_limit)) + geom_boxplot()+labs(title = "Did Higher speed limits lead to severity in accidents?")+ylim(0,75)
 ```
+
 This plot has Severity on x-axis and speed limit on the road on y-axis. This plot shows that Fatal accidents happened at speed zones ranging from 20 km/hr to 60 km/hr with mean of 30 km.hr, wheres as serious and slightly injured accidents happened at different speed limits. 
 Limitations: Needs units about speed_limit 
 
