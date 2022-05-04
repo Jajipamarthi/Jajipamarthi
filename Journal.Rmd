@@ -29,8 +29,9 @@ This is R Journal for updating my learnings from DACSS 601 coursework. I will up
 
 1. [Practice to Read Data](https://jajipamarthi.github.io/Homework2.html)
 
-2. [Selecting dataset and Research Questions for data analysis](https://jajipamarthi.github.io/Homework3.html)
+2. [Data wrangling and Research Questions for data analysis](https://jajipamarthi.github.io/Homework3.html)
 
+3. [Exploring Statistical Measures and Visualizations](https://jajipamarthi.github.io/Homework4.html)
 
 
 

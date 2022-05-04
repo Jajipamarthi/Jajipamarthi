@@ -1,5 +1,5 @@
 ---
-title: "Homework2"
+title: "Reading Data"
 author: "Jaji Pamarthi"
 date: "`r Sys.Date()`"
 description: "Homework2"

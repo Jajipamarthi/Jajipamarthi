@@ -1,5 +1,5 @@
 ---
-title: "Homework3"
+title: "Bicyclist Data"
 author: "Jaji Pamarthi"
 date: "`r Sys.Date()`"
 description: "Homework3"
@@ -61,14 +61,25 @@ joined_data
 
 
 ```
+## Making Data Tidy
+```{r}
+joined_data<-joined_data%>%
+ mutate(Year_data= format(Date, format="%Y"))
+
+ replace_na(joined_data,list(Road_conditions= "Missing Data",Weather_conditions="Missing Data"))
+
+
+tidy_data<-select(joined_data, -Accident_Index, -Time, -Date, -Day,-Age_Grp)
+tidy_data<-select(tidy_data,10,1:9)
+
+tidy_data
+```
 
 ## Potential Research Questions
 
-1. Does the weather conditions have an impact on the severity of the accident?
-2. Is the accident rate higher for specific gender? 
-3. Is the accident rate higher for specific age group?
-4. Over time did the accidents decrease?
-5. Is there any correlation between Severity
+1. Did higher speed limit zones have higher accidents?
+2. Over time did the accidents decrease?
+3. Is there any correlation between Severity
 and factors such as speed, road conditions, weather conditions, road type and light conditions?
 
 
