@@ -45,11 +45,11 @@ There are four variables in this dataset:
 
 1. territory: It is contains names of the territory in Australia. Data type is character 
 
-2. resp : Represents response of the individual, binary (yes or no). Data type is charater
+2. resp : Represents response of the individual, binary (yes or no). Data type is character
 
-3. count: Population in the territory. Data type: Double precision integer.
+3. count: Population in the territory. Data type: Double 
 
-4. percent : Percentage of population that expressed views. Data type: Double class float.
+4. percent : Percentage of population that expressed views. Data type: Double 
 
 ## Data Wrangling 
 
