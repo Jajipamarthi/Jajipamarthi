@@ -69,7 +69,7 @@ Accident_year<-ggplot(joined_data, aes(x=Year_data)) +
   labs(title = "Fig 1: Over time did the accidents decrease?")
 labels <- seq(1979,2018, length.out=10)
 Accident_year+ scale_x_discrete(breaks=labels, labels<-as.character(labels))
-plot(Accident_year)
+
 
 
 ggplot(joined_data, aes(x=Year_data)) +geom_bar()+
@@ -86,7 +86,7 @@ ggplot(joined_data, aes(x=Year_data,fill = Gender)) +geom_bar()+
 Figure 1 shows the number of accidents over the years, the accidents were higher in 1983 and least in 2006. The accidents decrease of the period of time. Futher, Figure 2 shows the accidents for gender over 1979-2018 were the Males have higher accident counts. Suprisingly, most of the accidents took place in clear weather conditions according to Figure 3.
 
 
-### Did higher speed limit zones have higher accidents?
+### Research Question 2: Did higher speed limit zones have higher accidents?
 
 ```{r}
 
@@ -103,18 +103,17 @@ Figure 1 shows the number of accidents over the years, the accidents were higher
 Figure 4 shows the distribution of accidents over speed limit, the accidents were when speed is higher. Figure 5 shows the same Figure 4 with gender information, males have been in accidents more than others at lower speed limit.
 
 
-## 
 ```{r}
 ggplot(joined_data, aes(Severity,Speed_limit,fill=Severity)) + geom_boxplot()+theme_bw()+labs(title = "Fig 6: Did Higher speed limits lead to severity in accidents?",x="Severity of the Accidents", y="Speed limit km/hr")+
 ylim(10,70)+scale_fill_manual(values=wes_palette(n=3, name="Moonrise2"))
 
 ```
 
-This plot has Severity on x-axis and speed limit on the road on y-axis. This plot shows that Fatal accidents happened at speed zones ranging from 20 km/hr to 60 km/hr with mean of 30 km per hr, wheres as serious and slightly injured accidents happened at different speed limits. 
+This plot has Severity on x-axis and speed limit on the road on y-axis. This plot shows that Fatal accidents happened at speed zones ranging from 20 km/hr to 60 km/hr with median of 30 km per hr, wheres as serious and slightly injured accidents happened at different speed limits. 
 
 
 
-##  Research Question 3:Is there any correlation between speed, Number of Vehicles and Number of Casaulties ?
+##  Research Question 3: Is there any correlation between speed, Number of Vehicles and Number of Casaulties ?
 ```{r}
 mycor<-cor(select(tidy_data,Number_of_Vehicles,Number_of_Casualties,Speed_limit))
 corrplot(mycor,method="number")

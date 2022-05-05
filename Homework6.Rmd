@@ -1,0 +1,175 @@
+
+---
+title: "Project Draft"
+author: "Jaji Pamarthi"
+date: "`r Sys.Date()`"
+description: "Homework6"
+output: distill::distill_article
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+## Bicyclist Accidents Data Analysis
+
+### Dataset Information
+
+This data set is about the bicycle accidents in Britain from year 1979 to 2018.
+
+This Dataset contains data such as the accident index, number of vehicles involved, number of casualties, date and time of accident, speed limit, road and weather conditions, day of accident and finally the road type in which the accident took place in Accidents.csv file. It also includes the gender of person driving the bicycle, severity of the accident and the age group range of the victims in bikers.csv file.
+
+This seemed like interesting dataset as I'm currently working on Bicycle Simulator project. Understanding of real-time data like this dataset would help in better design and developing experiments to understand bicyclist behavior as well.
+
+The dataset used is from kaggle and the link to data is [Bike Accidents in Great Britain](https://www.kaggle.com/datasets/johnharshith/bicycle-accidents-in-great-britain-1979-to-2018?select=Accidents.csv)
+
+## Required Libraries
+
+```{r}
+library(readr)
+library(magrittr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(wesanderson)
+library(corrplot)
+library(rmarkdown)
+library(stringr)
+```
+
+## Read Bikers information and Accident Data  
+
+### Reading csv file and combining the two files
+
+```{r}
+Accident_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Accidents.csv")
+Bikers_data<-read_csv(file="C:/Users/jyoth/Documents/GitHub/Jajipamarthi/Data/Bikers.csv")
+
+
+joined_data <- merge(Accident_data, Bikers_data, by.x = "Accident_Index", 
+             by.y = "Accident_Index", all.x = TRUE, all.y = FALSE) # merging two csv files
+
+paged_table(head(joined_data,20))
+
+
+
+```
+### Understanding Data 
+```{r}
+
+dim(joined_data)
+
+joined_data %>%
+  select(-Accident_Index,-Time,-Date,-Day) %>%
+  lapply(unique)
+```
+### Tidy Data Generation
+
+```{r}
+joined_data<-joined_data%>%
+ mutate(Year_data= format(Date, format="%Y"),Month_number= format(Date, format="%m"))%>%
+ mutate(Month_name = month.abb[as.numeric(Month_number)])
+
+
+
+tidy_data<-select(joined_data, -Accident_Index, -Time, -Date, -Day,-Month_number)
+tidy_data<-select(tidy_data,11,12,10,1:9)
+
+
+tidy_data<-tidy_data %>%
+  arrange(Year_data,Month_name)
+
+
+
+```
+
+
+## Visualizations
+
+
+### Research Question 1: Does younger age group have higher accident counts?
+
+```{r}
+
+ggplot(tidy_data, aes(x=Age_Grp)) + 
+  geom_bar(fill="bisque4") + xlab("Age range in years")+ylab("Number of Accidents")+
+  labs(title = "Fig 1: Count of Accidents based on Age Group")
+
+
+
+```
+
+### Research Question 2: Over time did the accidents decrease?
+
+
+```{r}
+group=factor(rep(1:5, each=40/5))
+Accident_year<-ggplot(tidy_data, aes(x=Year_data)) + 
+  geom_bar(fill=group,alpha=0.35, position="identity")+ ylab("Number of Accidents")+xlab("Years")
+  labs(title = "Fig 2: Over time did the accidents decrease?" )
+labels <- seq(1979,2018, length.out=10)
+Accident_year+ scale_x_discrete(breaks=labels, "Years")
+
+
+
+
+
+```
+Figure 2 shows the number of accidents over the years, the accidents were higher in 1983 and least in 2006. The accidents decrease of the period of time. 
+
+### Research Question 3: Did higher speed limit zones have higher accidents?
+
+```{r}
+
+ ggplot(tidy_data, aes(Speed_limit,fill=Gender)) + 
+  geom_bar() +xlim(15,70)+ylim(0,8)+theme_bw() +
+  labs(title = "Fig 3: Did Higher speed limits lead to more accidents?", y = "Number of Accidents", x = "Year")+scale_fill_manual(values=wes_palette(n=3, name="Moonrise2"))
+
+
+
+  
+```
+Figure 3 shows the distribution of accidents over speed limit with gender information, the accidents were when speed is higher and males have been in accidents more than others at lower speed limit.
+
+### Research Question 4: Did Higher speed limits lead to severity in accidents?
+```{r}
+ggplot(joined_data, aes(Severity,Speed_limit,fill=Severity)) + geom_boxplot()+theme_bw()+labs(title = "Fig 4: Did Higher speed limits lead to severity in accidents?",x="Severity of the Accidents", y="Speed limit km/hr")+
+ylim(10,70)+scale_fill_manual(values=wes_palette(n=3, name="Moonrise2"))
+
+```
+
+This plot has Severity on x-axis and speed limit on the road on y-axis. This plot shows that Fatal accidents happened at speed zones ranging from 20 km/hr to 60 km/hr with median of 30 km per hr, wheres as serious and slightly injured accidents happened at different speed limits. 
+
+
+
+###  Research Question 4: Is there any correlation between speed, Number of Vehicles and Number of Casaulties ?
+```{r}
+
+mycor<-cor(select(tidy_data,Number_of_Vehicles,Number_of_Casualties,Speed_limit))
+corrplot(mycor,method="number")
+
+
+
+```
+The correlation plot shows that there is some correlation between Number of Casualties and Number of Vehicles; no correlation between speed limit with Number of Vehicles and Number of Casualties.
+
+
+## Reflections
+
+The research questions and plots will be used for final project as well.
+
+The data and visualizations need to be reorganized for better flow of the document for final project
+
+
+
+
+
+
+
+
+
+
+
+
+
