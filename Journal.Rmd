@@ -37,6 +37,9 @@ This is R Journal for updating my learnings from DACSS 601 coursework. I will up
 
 5. [Finalizing Research Questions and Visualizations](https://jajipamarthi.github.io/Homework6.html)
 
+6. [Final Project](https://jajipamarthi.github.io/Final_Project.html)
+
+
 
 
 
