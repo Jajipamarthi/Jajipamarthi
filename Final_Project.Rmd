@@ -1,12 +1,17 @@
-
 ---
 title: "Final Project"
 author: "Jaji Pamarthi"
 date: "`r Sys.Date()`"
 description: "Final Project"
-output: distill::distill_article
+output:  
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE,message=FALSE,warning=FALSE, cache=TRUE)
@@ -170,11 +175,11 @@ The correlation plot shows that there is some correlation between Number of Casu
 
 1. Research Questions 1: Younger age group (11-15 years) were involved in more accidents than the older group, this could be because of more younger population using bicycles compared to older age group. 
 
-2. Accidents decreased over the years, which could be result of better laws for bicyclist and better road instructure.
+2. Accidents decreased over the years, which could be result of better laws for bicyclist and better road infrastructure.
 
 3. Males had higher accident count even in lower speed limit zones.
 
-4. Severity of the accident varied for different speed limits, fatal accidents happended in range 20-60 km/hr.
+4. Severity of the accident varied for different speed limits, fatal accidents happened in range 20-60 km/hr.
 
 
 5. There was no significant correlation found between Number of Number of Casualties, Number of Vehicles and Speed limits.
@@ -183,18 +188,15 @@ The correlation plot shows that there is some correlation between Number of Casu
 
 ## Bibliography 
 
-[Bike Accidents in Great Britain](https://www.kaggle.com/datasets/johnharshith/bicycle-accidents-in-great-britain-1979-to-2018?select=Accidents.csv)
+1. [Bike Accidents in Great Britain data set](https://www.kaggle.com/datasets/johnharshith/bicycle-accidents-in-great-britain-1979-to-2018?select=Accidents.csv)
 
 
-Rice, D., & Rolfe, M. (n.d.). Data Science Fundamentals: R Tutorials. Retrieved from https://classroom.google.com/u/1/w/MTIwNzU2NTkzNjI2/t/all
+2. Rice, D., & Rolfe, M. (n.d.). Data Science Fundamentals: R Tutorials. Retrieved from (https://classroom.google.com/u/1/w/MTIwNzU2NTkzNjI2/t/all)
 
 
+3. R website and Github resource(https://github.com/CrumpLab/LabJournalWebsite/blob/master/index.Rmd)
 
-
-
-
-
-
+4. [R Studio](https://www.rstudio.com/)
 
 
 

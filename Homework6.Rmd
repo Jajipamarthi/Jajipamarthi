@@ -1,12 +1,17 @@
-
 ---
 title: "Project Draft"
 author: "Jaji Pamarthi"
 date: "`r Sys.Date()`"
 description: "Homework6"
-output: distill::distill_article
+output:  
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE,message=FALSE,warning=FALSE, cache=TRUE)

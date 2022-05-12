@@ -1,4 +1,3 @@
-
 ---
 title: "Better Visualizations"
 author: "Jaji Pamarthi"
